@@ -22,10 +22,28 @@ const Square = ({ value, onClick }) => {
   );
 };
 
+function calcualateWinner(board) {
+  //list down semua kemungkinan
+
+}
+
 function App() {
   const [isXnext, setIsXNext] = useState(false);
+
+  const [board, setBoard] = useState(Array(9).fill(null));
+
   const handleSquareClick = (value) => {
-    setIsXNext(!isXnext);
+    setBoard((prevBoard) => {
+      const newBoard = [...prevBoard];
+
+      if (newBoard[value]) {
+        return newBoard; // Ignore click if square is already filled
+      }
+
+      newBoard[value] = isXnext ? "X" : "O";
+      setIsXNext(!isXnext);
+      return newBoard;
+    });
     console.log(`Square ${value} clicked`);
   }
 
@@ -33,19 +51,19 @@ function App() {
     <div className="container">
       <div className="board">
         <div className="row">
-          <Square value={1} onClick={handleSquareClick} />
-          <Square value={2} onClick={handleSquareClick} />
-          <Square value={3} onClick={handleSquareClick} />
+          <Square value={board[0]} onClick={() => { handleSquareClick(0) }} />
+          <Square value={board[1]} onClick={() => { handleSquareClick(1) }} />
+          <Square value={board[2]} onClick={() => { handleSquareClick(2) }} />
         </div>
         <div className="row">
-          <Square value={4} onClick={handleSquareClick} />
-          <Square value={5} onClick={handleSquareClick} />
-          <Square value={6} onClick={handleSquareClick} />
+          <Square value={board[3]} onClick={() => { handleSquareClick(3) }} />
+          <Square value={board[4]} onClick={() => { handleSquareClick(4) }} />
+          <Square value={board[5]} onClick={() => { handleSquareClick(5) }} />
         </div>
         <div className="row">
-          <Square value={7} onClick={handleSquareClick} />
-          <Square value={8} onClick={handleSquareClick} />
-          <Square value={9} onClick={handleSquareClick} />
+          <Square value={board[6]} onClick={() => { handleSquareClick(6) }} />
+          <Square value={board[7]} onClick={() => { handleSquareClick(7) }} />
+          <Square value={board[8]} onClick={() => { handleSquareClick(8) }} />
         </div>
       </div>
 
