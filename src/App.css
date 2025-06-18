@@ -28,3 +28,6 @@
   font-size: 24px;
   display: block;
 }
+.row {
+  display: flex;
+}

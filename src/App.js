@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 
 const Button = ({ children }) => {
   return (
@@ -6,26 +7,39 @@ const Button = ({ children }) => {
       {children}
     </button>
   );
-}
+};
+
+const Square = ({ value }) => {
+  const [state, setState] = useState(null);
+  const handleClick = () => {
+    setState("X");
+    console.log(`Square ${value} clicked`);
+  };
+  return (
+    <div className="square" onClick={handleClick}>
+      {state}
+    </div>
+  );
+};
 
 function App() {
   return (
     <div className="container">
       <div className="board">
         <div className="row">
-          <div className="square">1</div>
-          <div className="square">2</div>
-          <div className="square">3</div>
+          <Square value={1} />
+          <Square value={2} />
+          <Square value={3} />
         </div>
         <div className="row">
-          <div className="square">4</div>
-          <div className="square">5</div>
-          <div className="square">6</div>
+          <Square value={4} />
+          <Square value={5} />
+          <Square value={6} />
         </div>
         <div className="row">
-          <div className="square">7</div>
-          <div className="square">8</div>
-          <div className="square">9</div>
+          <Square value={7} />
+          <Square value={8} />
+          <Square value={9} />
         </div>
       </div>
 
