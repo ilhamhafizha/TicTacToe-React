@@ -5,6 +5,7 @@ import Square from './components/Square';
 import Board from './components/Board';
 import GameInfo from './components/GameInfo';
 import calcualateWinner from './utils/calcualateWinner';
+import Timeline from './components/Timeline';
 
 function App() {
   const [timeLine, setTimeLine] = useState([{
@@ -20,13 +21,7 @@ function App() {
   const isXnext = timeLine[safeCurrentState].isXnext;
   const winner = calcualateWinner(board);
 
-  const handlerResetGameClick = () => {
-    setTimeLine([{
-      isXnext: false,
-      board: Array(9).fill(null)
-    }]);
-    setCurrentState(0);  // Reset current state
-  }
+
 
   const handleSquareClick = (value) => {
     if (winner) {
@@ -59,13 +54,13 @@ function App() {
   return (
     <div className="container">
       <Board board={board} onAction={handleSquareClick} />
-      <GameInfo
-        winner={winner}
-        isXnext={isXnext}
-        onReset={handlerResetGameClick}
-        timeLine={timeLine}
-        onTimelineClick={handleTimelineClick}
-      />
+      <div>
+        <GameInfo
+          winner={winner}
+          isXnext={isXnext}
+        />
+        <Timeline timeLine={timeLine} onTimeLineItemClick={handleTimelineClick} currentState={currentState} />
+      </div>
     </div>
   );
 }
