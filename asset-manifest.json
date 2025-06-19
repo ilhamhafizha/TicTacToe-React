@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ilhamhafizha/tictactoe-react/static/css/main.8d703a52.css",
-    "main.js": "/ilhamhafizha/tictactoe-react/static/js/main.ad1f2f18.js",
-    "static/js/453.f9ca2b51.chunk.js": "/ilhamhafizha/tictactoe-react/static/js/453.f9ca2b51.chunk.js",
-    "index.html": "/ilhamhafizha/tictactoe-react/index.html",
-    "main.8d703a52.css.map": "/ilhamhafizha/tictactoe-react/static/css/main.8d703a52.css.map",
-    "main.ad1f2f18.js.map": "/ilhamhafizha/tictactoe-react/static/js/main.ad1f2f18.js.map",
-    "453.f9ca2b51.chunk.js.map": "/ilhamhafizha/tictactoe-react/static/js/453.f9ca2b51.chunk.js.map"
+    "main.css": "/tictactoe-react/static/css/main.8d703a52.css",
+    "main.js": "/tictactoe-react/static/js/main.82de7152.js",
+    "static/js/453.f9ca2b51.chunk.js": "/tictactoe-react/static/js/453.f9ca2b51.chunk.js",
+    "index.html": "/tictactoe-react/index.html",
+    "main.8d703a52.css.map": "/tictactoe-react/static/css/main.8d703a52.css.map",
+    "main.82de7152.js.map": "/tictactoe-react/static/js/main.82de7152.js.map",
+    "453.f9ca2b51.chunk.js.map": "/tictactoe-react/static/js/453.f9ca2b51.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8d703a52.css",
-    "static/js/main.ad1f2f18.js"
+    "static/js/main.82de7152.js"
   ]
 }
