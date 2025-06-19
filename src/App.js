@@ -6,6 +6,7 @@ import Board from './components/Board';
 import GameInfo from './components/GameInfo';
 import calcualateWinner from './utils/calcualateWinner';
 import Timeline from './components/Timeline';
+import Swal from 'sweetalert2';
 
 function App() {
   const [timeLine, setTimeLine] = useState([{
@@ -21,7 +22,41 @@ function App() {
   const isXnext = timeLine[safeCurrentState].isXnext;
   const winner = calcualateWinner(board);
 
+  // Show winner popup
+  const showWinnerAlert = (winner) => {
+    const playerColor = winner === 'X' ? '#4CAF50' : '#2196F3';
 
+    Swal.fire({
+      title: 'Winner!',
+      html: `
+        <div class="winner-popup">
+          <div class="winner-trophy">🏆</div>
+          <div class="winner-text">
+            Player <span style="color: ${playerColor}; font-weight: bold;">${winner}</span> has won!
+          </div>
+        </div>
+      `,
+      icon: 'success',
+      confirmButtonText: 'Play Again',
+      showCancelButton: true,
+      cancelButtonText: 'Review Game',
+      background: '#fff',
+      customClass: {
+        popup: 'game-popup',
+        confirmButton: 'game-confirm-btn',
+        cancelButton: 'game-cancel-btn'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Reset game
+        setTimeLine([{
+          isXnext: false,
+          board: Array(9).fill(null)
+        }]);
+        setCurrentState(0);
+      }
+    });
+  };
 
   const handleSquareClick = (value) => {
     if (winner) {
@@ -45,6 +80,38 @@ function App() {
     }]);
 
     setCurrentState(safeCurrentState + 1);
+
+    // Check for winner after move
+    const newWinner = calcualateWinner(newBoard);
+    if (newWinner) {
+      setTimeout(() => showWinnerAlert(newWinner), 100);
+    } else if (newBoard.every(square => square !== null)) {
+      // Show draw popup
+      Swal.fire({
+        title: 'Draw!',
+        html: `
+          <div class="winner-popup">
+            <div class="winner-trophy">🤝</div>
+            <div class="winner-text">It's a tie! Well played both!</div>
+          </div>
+        `,
+        icon: 'info',
+        confirmButtonText: 'Play Again',
+        background: '#fff',
+        customClass: {
+          popup: 'game-popup',
+          confirmButton: 'game-confirm-btn'
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setTimeLine([{
+            isXnext: false,
+            board: Array(9).fill(null)
+          }]);
+          setCurrentState(0);
+        }
+      });
+    }
   }
 
   const handleTimelineClick = (index) => {
@@ -52,14 +119,27 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Board board={board} onAction={handleSquareClick} />
-      <div>
-        <GameInfo
-          winner={winner}
-          isXnext={isXnext}
-        />
-        <Timeline timeLine={timeLine} onTimeLineItemClick={handleTimelineClick} currentState={currentState} />
+    <div className="game-container">
+      <h1 className="game-title">Tic Tac Toe</h1>
+      <div className="game-content">
+        <div className="board-container">
+          <Board board={board} onAction={handleSquareClick} />
+        </div>
+
+        <div className="game-info">
+          <div className="next-player">
+            {winner ? `Winner: ${winner}` : `Next player: ${isXnext ? 'X' : 'O'}`}
+          </div>
+
+          <div className="game-history">
+            <h2 className="history-title">Game History</h2>
+            <Timeline
+              timeLine={timeLine}
+              onTimeLineItemClick={handleTimelineClick}
+              currentState={currentState}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

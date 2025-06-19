@@ -1,44 +1,296 @@
-.container {
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main container */
+.game-container {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  background: #00b4db;
   display: flex;
-  background-color: cadetblue;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.game-title {
+  color: white;
+  font-size: 48px;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Game Content */
+.game-content {
+  width: 90%;
+  max-width: 1000px;
+  min-height: 80vh;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  backdrop-filter: blur(10px);
+}
+
+/* Left Side - Board */
+.board-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* Board Layout */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .square {
   width: 120px;
   height: 120px;
-  background-color: #fff;
-  margin: 10px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  position: relative;
-  font-weight: bolder;
-}
-
-.board {
-  margin-right: 32px;
-}
-
-.button {
-  width: 200px;
-  height: 32px;
-  background-color: #fff;
-  font-size: 24px;
-  display: block;
-}
-.row {
+  background: white;
+  border: none;
+  border-radius: 10px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.square:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Right Side - Game Info */
+.game-info {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.next-player {
+  width: 100%;
+  background: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Game History */
+.game-history {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.history-title {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Button Styles */
+.button {
+  width: 100%;
+  padding: 12px 20px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: left;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .button:hover {
-  background-color: #000;
-  color: #fff;
+  background: #f0f0f0;
+  transform: translateX(5px);
 }
 
 .button[data-active="true"] {
-  background-color: olivedrab;
-  color: #fff;
+  background: #0083b0;
+  color: white;
+}
+
+/* Player turn indicator */
+.player-turn {
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 20px 0;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.x-turn {
+  background: #e74c3c;
+}
+
+.o-turn {
+  background: #3498db;
+}
+
+/* Game Board Container */
+.game-board-container {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 968px) {
+  .game-content {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+  }
+
+  .board-container {
+    width: 100%;
+  }
+
+  .game-info {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .square {
+    width: 90px;
+    height: 90px;
+    font-size: 36px;
+  }
+
+  .board {
+    gap: 8px;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .square {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+
+  .board {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .game-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Square X and O styles */
+.square {
+  position: relative;
+  overflow: hidden;
+}
+
+.square[data-value="X"] {
+  color: #e74c3c;
+}
+
+.square[data-value="O"] {
+  color: #3498db;
+}
+
+/* Game status improvements */
+.game-status {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-status h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Player turn indicator improvements */
+.player-turn {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 15px 30px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .board {
+    width: 330px;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .square {
+    width: 90px;
+    height: 90px;
+    font-size: 40px;
+    margin: 5px;
+  }
+
+  .game-content {
+    padding: 20px;
+  }
+
+  .game-board-container {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .board {
+    width: 270px;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .square {
+    width: 75px;
+    height: 75px;
+    font-size: 32px;
+    margin: 4px;
+  }
 }
