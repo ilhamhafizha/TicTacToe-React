@@ -36,7 +36,7 @@ A modern implementation of the classic Tic Tac Toe game built with React, featur
 
 ## 🚀 Live Demo
 
-Check out the live demo: [Play Tic Tac Toe](https://ilhamhafizha.github.io/TicTacToe-React/)
+Check out the live demo: [Play Tic Tac Toe](https://ilhamhafizha.github.io/tictactoe)
 
 ## 📦 Project Structure
 
