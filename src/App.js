@@ -6,19 +6,18 @@ import Board from './components/Board';
 import GameInfo from './components/GameInfo';
 import calcualateWinner from './utils/calcualateWinner';
 
-
 function App() {
-  // const [isXnext, setIsXNext] = useState(false);
-
-  // const [board, setBoard] = useState(Array(9).fill(null));
   const [timeLine, setTimeLine] = useState([{
     isXnext: false,
     board: Array(9).fill(null)
   }]);
 
-  const currentState = timeLine[timeLine.length - 1];
-  const board = currentState.board;
-  const isXnext = currentState.isXnext;
+  const [currentState, setCurrentState] = useState(0);
+
+  // Make sure currentState is within bounds
+  const safeCurrentState = Math.min(currentState, timeLine.length - 1);
+  const board = timeLine[safeCurrentState].board;
+  const isXnext = timeLine[safeCurrentState].isXnext;
   const winner = calcualateWinner(board);
 
   const handlerResetGameClick = () => {
@@ -26,6 +25,7 @@ function App() {
       isXnext: false,
       board: Array(9).fill(null)
     }]);
+    setCurrentState(0);  // Reset current state
   }
 
   const handleSquareClick = (value) => {
@@ -33,7 +33,7 @@ function App() {
       return;
     }
 
-    const newBoard = [...currentState.board];
+    const newBoard = [...board];
 
     if (newBoard[value]) {
       return;
@@ -41,12 +41,20 @@ function App() {
 
     newBoard[value] = isXnext ? "X" : "O";
 
-    setTimeLine([...timeLine, {
+    // Remove future moves if we're not at the end
+    const newTimeLine = timeLine.slice(0, safeCurrentState + 1);
+
+    setTimeLine([...newTimeLine, {
       board: newBoard,
       isXnext: !isXnext
     }]);
+
+    setCurrentState(safeCurrentState + 1);
   }
 
+  const handleTimelineClick = (index) => {
+    setCurrentState(index);
+  }
 
   return (
     <div className="container">
@@ -56,10 +64,10 @@ function App() {
         isXnext={isXnext}
         onReset={handlerResetGameClick}
         timeLine={timeLine}
+        onTimelineClick={handleTimelineClick}
       />
     </div>
   );
-
 }
 
 export default App;
