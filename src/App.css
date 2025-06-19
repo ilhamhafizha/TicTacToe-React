@@ -32,3 +32,13 @@
 .row {
   display: flex;
 }
+
+.button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.button[data-active="true"] {
+  background-color: olivedrab;
+  color: #fff;
+}
