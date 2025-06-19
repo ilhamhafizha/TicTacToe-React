@@ -1,70 +1,157 @@
-# Getting Started with Create React App
+# Tic Tac Toe with AI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern implementation of the classic Tic Tac Toe game built with React, featuring both player-vs-player and player-vs-AI modes. This project showcases modern React practices, clean UI design, and intelligent AI gameplay.
 
-## Available Scripts
+![Tic Tac Toe Game](screenshot.png)
 
-In the project directory, you can run:
+## 🎮 Features
 
-### `npm start`
+- **Multiple Game Modes**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - Player vs Player
+  - Player vs AI (Coming Soon)
+  - Different AI difficulty levels (Coming Soon)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Modern UI/UX**
 
-### `npm test`
+  - Clean and responsive design
+  - Beautiful animations and transitions
+  - Mobile-friendly interface
+  - SweetAlert2 notifications
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Game Features**
+  - Interactive 3x3 game board
+  - Move history tracking
+  - Time travel to previous moves
+  - Real-time game status updates
+  - Winner detection
 
-### `npm run build`
+## 🛠️ Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React 18
+- JavaScript (ES6+)
+- CSS3 with Flexbox/Grid
+- SweetAlert2 for notifications
+- GitHub Pages for deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Live Demo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Check out the live demo: [Play Tic Tac Toe](https://ilhamhafizha.github.io/TicTacToe-React/)
 
-### `npm run eject`
+## 📦 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+src/
+├── components/
+│   ├── Board.js      # Game board component
+│   ├── Button.js     # Reusable button component
+│   ├── GameInfo.js   # Game status display
+│   ├── Square.js     # Individual square component
+│   └── Timeline.js   # Move history component
+├── utils/
+│   └── calculateWinner.js  # Winner detection logic
+├── App.js           # Main application component
+└── App.css          # Application styles
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎯 Upcoming Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [ ] AI opponent using Minimax algorithm
+- [ ] Multiple difficulty levels
+  - Easy: Random moves
+  - Medium: Smart moves with occasional mistakes
+  - Hard: Unbeatable AI
+- [ ] Move suggestions
+- [ ] Game statistics
+- [ ] Custom board sizes
+- [ ] Sound effects
+- [ ] Theme customization
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Installation and Setup
 
-## Learn More
+1. Clone the repository:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   git clone https://github.com/ilhamhafizha/TicTacToe-React.git
+   cd TicTacToe-React
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Install dependencies:
 
-### Code Splitting
+   ```bash
+   npm install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. Start the development server:
 
-### Analyzing the Bundle Size
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Making a Progressive Web App
+## 🎮 How to Play
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1. **Player vs Player Mode**
 
-### Advanced Configuration
+   - Players take turns clicking empty squares
+   - X's go first, then O's
+   - First player to get 3 in a row wins
+   - Use the timeline to review moves
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. **Player vs AI Mode (Coming Soon)**
+   - Choose your difficulty level
+   - Play as either X or O
+   - Try to beat the AI!
 
-### Deployment
+## 🔧 Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `npm start` - Runs the app in development mode
+- `npm test` - Launches the test runner
+- `npm run build` - Builds the app for production
+- `npm run deploy` - Deploys to GitHub Pages
 
-### `npm run build` fails to minify
+## 🤝 Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit your changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the branch: `git push origin feature/AmazingFeature`
+5. Open a Pull Request
+
+## 📝 Development Notes
+
+### AI Implementation (Planned)
+
+The AI will use the Minimax algorithm with alpha-beta pruning for optimal performance:
+
+- Easy mode: Random moves with 30% optimal moves
+- Medium mode: Minimax with limited depth
+- Hard mode: Full Minimax implementation (unbeatable)
+
+### Future Improvements
+
+- Add unit tests
+- Implement local storage for game history
+- Add multiplayer support
+- Create custom themes
+- Add animation for winning combinations
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👏 Acknowledgments
+
+- Inspired by React's official tutorial
+- Enhanced with modern React practices
+- UI design inspired by Material Design principles
+- Special thanks to the React community
+
+## 📧 Contact
+
+Ilham Hafizha - [GitHub](https://github.com/ilhamhafizha)
+
+Project Link: [https://github.com/ilhamhafizha/TicTacToe-React](https://github.com/ilhamhafizha/TicTacToe-React)
